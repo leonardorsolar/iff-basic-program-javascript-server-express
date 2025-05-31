@@ -200,6 +200,249 @@ Esse é um resumo dos scripts disponíveis:
 - Se quiser compilar o TypeScript manualmente, use: `npm run build`.
 - Para produção (quando o projeto já está pronto): `npm run start:prod`.
 
+# Teste unitário com Jest
+
 ---
 
-Se quiser, posso gerar um PDF com esse tutorial ou criar um repositório de exemplo no GitHub para você usar com os alunos. Deseja isso?
+## ✅ O que é o Jest?
+
+> O **Jest** é uma ferramenta de testes automatizados para aplicações JavaScript e TypeScript. Ele verifica se o seu código está funcionando como deveria, **de forma automática**.
+
+---
+
+## 📁 Estrutura de testes
+
+Geralmente, os testes ficam dentro da **pasta `tests/`**. Cada arquivo de teste termina com `.test.ts` ou `.spec.ts`.
+
+Exemplo:
+
+```
+/tests
+  └── Usuario.test.ts
+```
+
+---
+
+## 🔍 Código de exemplo: `tests/Usuario.test.ts`
+
+```ts
+import { Usuario } from '../src/modelos/Usuario'; // Importa a classe que será testada
+
+// Define um grupo de testes chamado "Classe usuario"
+describe('Classe usuario', () => {
+  // Teste: verifica se o objeto usuario é criado corretamente
+  test('Deve criar um usuario com nome, email e senha', () => {
+    // Given (Dado): os dados para criar um usuário
+    const usuario = new Usuario('leonardo', 'leonardo@gmail.com', 'senha123');
+
+    // When (Quando): acessamos o nome do usuário criado
+    const nome = usuario.getNome();
+
+    // Then (Então): esperamos que o nome seja "leonardo"
+    expect(nome).toBe('leonardo');
+  });
+});
+```
+
+> 🎓 Esse teste **verifica se a classe `Usuario` está funcionando corretamente.**
+
+---
+
+## ▶️ Como rodar os testes?
+
+Use este comando no terminal:
+
+```bash
+npm run test
+```
+
+Você verá uma saída parecida com:
+
+```
+ PASS  tests/Usuario.test.ts
+  Classe usuario
+    ✓ Deve criar um usuario com nome, email e senha
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+```
+
+Isso significa que o teste passou com sucesso ✅
+
+---
+
+## 📊 Como ver o coverage (cobertura de testes)?
+
+**Cobertura de testes** mostra **quais partes do seu código foram testadas**.
+
+### 1. Adicione este script ao seu `package.json`, se ainda não existir:
+
+```json
+"scripts": {
+  "test": "jest",
+  "test:cov": "jest --coverage"
+}
+```
+
+### 2. Execute:
+
+```bash
+npm run test:cov
+```
+
+### 3. Saída esperada (exemplo):
+
+```
+-------------------|---------|----------|---------|---------|
+File               | % Stmts | % Branch | % Funcs | % Lines |
+-------------------|---------|----------|---------|---------|
+All files          |     100 |      100 |     100 |     100 |
+ modelos           |     100 |      100 |     100 |     100 |
+  Usuario.ts       |     100 |      100 |     100 |     100 |
+-------------------|---------|----------|---------|---------|
+```
+
+Ele mostra **quantos por cento do seu código está sendo testado**.
+
+Além disso, uma pasta chamada `coverage/` será criada com **relatórios detalhados**, inclusive em HTML!
+
+Para visualizar no navegador:
+
+```bash
+npx open coverage/lcov-report/index.html
+```
+
+Ou abra manualmente esse arquivo.
+
+---
+
+## Alternativa para rodar o jest no terminal.
+
+Use este comando no terminal:
+
+```bash
+npx jest --coverage
+```
+
+## 🧠 Dicas para iniciantes
+
+- Um teste é dividido em 3 partes:
+
+  - **Given (Dado):** prepara o cenário
+  - **When (Quando):** executa a ação
+  - **Then (Então):** verifica se o resultado está certo
+
+- Use `expect()` para fazer as verificações
+- Testes ajudam a ter **confiança** no código
+- O Jest é uma ferramenta muito usada em **projetos profissionais**
+
+---
+
+## 📚 Resumo dos comandos úteis
+
+| Comando            | O que faz                                 |
+| ------------------ | ----------------------------------------- |
+| `npm run test`     | Executa todos os testes                   |
+| `npm run test:cov` | Executa os testes e mostra a cobertura    |
+| `npx jest`         | Outra forma de rodar os testes            |
+| `npx jest --watch` | Roda testes automaticamente quando salvar |
+
+---
+
+# 📘 Mini Tutorial – Comandos Básicos do Git
+
+## 1️⃣ Clonar um repositório remoto
+
+### 🔹 Comando:
+
+```bash
+git clone https://github.com/usuario/nome-do-repositorio.git
+```
+
+### 🧠 O que faz?
+
+Copia todos os arquivos e histórico de versões de um projeto remoto (como no GitHub) para o seu computador.
+
+---
+
+## 2️⃣ Verificar o status do repositório
+
+### 🔹 Comando:
+
+```bash
+git status
+```
+
+### 🧠 O que faz?
+
+Mostra:
+
+- Quais arquivos foram modificados
+- Quais arquivos estão prontos para o commit
+- Quais ainda precisam ser adicionados
+
+---
+
+## 3️⃣ Adicionar arquivos para o commit
+
+### 🔹 Comando:
+
+```bash
+git add .
+```
+
+### 🧠 O que faz?
+
+Adiciona **todos os arquivos modificados** para a "área de preparo" (_staging area_) – ou seja, prontos para serem salvos no Git.
+
+> 💡 Você também pode usar `git add nome-do-arquivo.ext` para adicionar apenas um arquivo específico.
+
+---
+
+## 4️⃣ Fazer o commit das alterações
+
+### 🔹 Comando:
+
+```bash
+git commit -m "Mensagem explicando o que foi alterado"
+```
+
+### 🧠 O que faz?
+
+Cria um **registro permanente** das alterações no histórico do projeto com uma mensagem descritiva.
+
+> Exemplo: `git commit -m "Corrigido erro na rota de login"`
+
+---
+
+## 5️⃣ Enviar alterações para o repositório remoto
+
+### 🔹 Comando:
+
+```bash
+git push
+```
+
+### 🧠 O que faz?
+
+Envia os commits que estão no seu computador para o repositório remoto no GitHub (ou outro serviço).
+
+```bash
+git push  origin main
+```
+
+Obs.: terá que digitar nome do usuário e depois a senha do github
+
+---
+
+## ✅ Resumo dos comandos
+
+```bash
+git clone <url-do-repositorio>
+git status
+git add .
+git commit -m "mensagem do commit"
+git push
+```
+
+---

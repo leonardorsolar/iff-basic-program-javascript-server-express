@@ -2,28 +2,29 @@ import express, { Request, Response } from 'express';
 import cors from 'cors'; // Importa o CORS
 import { Usuario } from './modelos/Usuario';
 
+// Cria uma instância do aplicativo Express
 const app = express();
-app.use(express.json());
 
-// Configura o CORS
-app.use(cors()); // Aplica o CORS para permitir requisições de outros domínios
-
-// Rota GET para visualização
+// Define uma rota GET na raiz do servidor
 app.get('/', (req: Request, res: Response) => {
   res.send('Olá, Mundo! Bem-vindo ao Express com TypeScript.');
 });
 
+// Define uma rota GET para "/usuario"
 app.get('/usuario', (req: Request, res: Response) => {
+  // Cria dados simulados de um usuário
   const name = 'leonardo';
   const email = 'leo@gmail.com';
   const senha = '123456';
 
+  // Instancia um objeto da classe Usuario com os dados acima
   const usuario = new Usuario(name, email, senha);
-
+  // Retorna o objeto do usuário como resposta
   res.send(usuario);
 });
-
+// Define a porta onde o servidor irá escutar as requisições
 const PORT = 3000;
+// Inicia o servidor e exibe uma mensagem no console
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
