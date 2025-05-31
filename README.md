@@ -99,9 +99,9 @@ Você verá um objeto JSON com as informações simuladas do usuário:
 
 Acesse a pasta front/frontend.html
 
-dẽ um duplo clique no arquivo frontend.html
+Dê um duplo clique no arquivo frontend.html
 
-obs.: Certifique-se de que o backend está rodando com:npm run start
+Obs.: Certifique-se de que o backend está rodando com: npm run start
 
 Você verá o nome, e-mail e senha do usuário renderizados.
 
@@ -371,6 +371,32 @@ Um **servidor** é um programa que **fica escutando pedidos (requisições)**. Q
 
 ---
 
+### 🧠 Como funciona um servidor HTTP?
+
+![Texto alternativo](./image/cliente-servidor-http.png)
+
+O **protocolo HTTP** é um importante protocolo utilizado na internet para realizar comunicação entre dois programas. É um protocolo cliente-servidor, ou seja, cada ator da comunicação realiza um papel diferente..
+
+O cliente pode ser entendido como a parte que inicia ativamente a comunicação. Já o servidor é a parte passiva que aguarda por conexões vindas dos clientes.
+
+No caso do HTTP, a comunicação ocorre através de pares de mensagens chamadas de request e response. O cliente é o responsável por fazer solicitações (request), enquanto o servidor responde (response) cada solicitação realizada pelo cliente.
+
+Ao montar uma requisição, o cliente deve indicar explicitamente o endereço do recurso que deseja interagir. Esse endereçamento é feito através de uma URL, detalhada a seguir.
+
+### URL
+
+A URL (Uniform Resource Locator) é um padrão estabelecido que permite indicar o endereço de algum recurso no servidor. A URL possui o seguinte formato:
+
+http://localhost:3000/usuarios
+
+- http://:protocolo
+- localhost: host
+- :3000:
+- porta
+- /usuarios: caminho
+
+A primeira parte da URL é conhecida como scheme e indica o protocolo a ser utilizado. Em seguida, é indicado o endereço do host (servidor). Após o host, é colocada a porta da comunicação indicada após o sinal de dois-pontos (:). Depois, tem-se o path, que indica o caminho para o recurso.
+
 ### 🧱 O que é o Express?
 
 O **Express** é uma **ferramenta do Node.js** que facilita a criação de servidores. Ele permite que você defina **rotas**, que são os caminhos pelos quais o navegador (ou outro sistema) pode fazer **requisições**.
@@ -379,7 +405,7 @@ O **Express** é uma **ferramenta do Node.js** que facilita a criação de servi
 
 ### 🔄 Como funciona a comunicação frontend ↔ servidor?
 
-![Texto alternativo](./image//cliente-servidor.png)
+![Texto alternativo](./image/cliente-servidor.png)
 
 1. **Frontend (HTML/JS)** faz um pedido HTTP (ex: `fetch`, `axios`, formulário).
 
@@ -391,7 +417,7 @@ O **Express** é uma **ferramenta do Node.js** que facilita a criação de servi
 
 3. O servidor **processa** (pode buscar dados, calcular, etc).
 
-   - -> request -> Classe -> response
+   - rota -> métodos (get/post/put/delete) -> request -> Classe -> response
 
 4. O servidor **envia uma resposta**.
 
@@ -477,6 +503,8 @@ Um **servidor** é como um "garçom digital". Ele **recebe pedidos** (chamados d
 ---
 
 ## 📬 Métodos HTTP (os "tipos de pedidos")
+
+![Texto alternativo](./image/metodos.png)
 
 ### 1. **GET** – Pedir informações
 
