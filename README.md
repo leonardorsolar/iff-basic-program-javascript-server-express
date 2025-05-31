@@ -361,6 +361,172 @@ npx jest --coverage
 
 ---
 
+Claro! Vamos entender de forma simples e direta como funciona um **servidor com Express** e como o **frontend se comunica com ele**:
+
+---
+
+### 🧠 O que é um servidor?
+
+Um **servidor** é um programa que **fica escutando pedidos (requisições)**. Quando ele recebe um pedido, **responde com algo** — por exemplo, um texto, uma imagem ou dados.
+
+---
+
+### 🧱 O que é o Express?
+
+O **Express** é uma **ferramenta do Node.js** que facilita a criação de servidores. Ele permite que você defina **rotas**, que são os caminhos pelos quais o navegador (ou outro sistema) pode fazer **requisições**.
+
+---
+
+### 🔄 Como funciona a comunicação frontend ↔ servidor?
+
+![Texto alternativo](./image//cliente-servidor.png)
+
+1. **Frontend (HTML/JS)** faz um pedido HTTP (ex: `fetch`, `axios`, formulário).
+
+   - pedido -> request
+
+2. O servidor Express **recebe esse pedido**.
+
+   - -> métodos (get/post/put/delete) -> request
+
+3. O servidor **processa** (pode buscar dados, calcular, etc).
+
+   - -> request -> Classe -> response
+
+4. O servidor **envia uma resposta**.
+
+   - <- response
+
+5. O frontend **recebe essa resposta** e pode **mostrar os dados na tela**.
+
+   - <- response
+
+---
+
+### 💡 Exemplo real (como no seu projeto):
+
+#### 🖥️ Frontend:
+
+```javascript
+fetch('http://localhost:3000/usuario');
+```
+
+Esse comando pede os dados do usuário para o servidor.
+
+#### 🛠️ Backend (Express):
+
+```ts
+app.get('/usuario', (req, res) => {
+  const usuario = new Usuario('leonardo', 'leo@gmail.com', '123456');
+  res.send(usuario); // resposta enviada ao frontend
+});
+```
+
+Essa rota `/usuario` **recebe o pedido** e **responde com os dados** do usuário.
+
+#### 📦 O que chega no frontend:
+
+```json
+{
+  "nome": "leonardo",
+  "email": "leo@gmail.com",
+  "senha": "123456"
+}
+```
+
+Esses dados são usados no HTML para mostrar o usuário na tela.
+
+---
+
+### 📌 Resumo:
+
+- O frontend **faz um pedido** para o servidor (via rota).
+- O servidor **responde** com dados.
+- O frontend **usa os dados** para exibir algo para o usuário.
+
+---
+
+Claro! Aqui vai uma explicação **simples e didática** para quem está começando:
+
+---
+
+## 🖥️ Métodos HTTP
+
+Um **servidor** é como um "garçom digital". Ele **recebe pedidos** (chamados de _requisições_) e **responde com informações** (chamadas de _respostas_).
+
+👉 Exemplo real:
+
+- Você digita `https://meusite.com/usuario` no navegador.
+- O navegador envia um **pedido GET** para o servidor.
+- O servidor responde com os dados do usuário.
+
+---
+
+## 🔄 Como o navegador (frontend) conversa com o servidor (backend)?
+
+- O navegador faz uma **requisição HTTP**.
+- O servidor (com Express, por exemplo) **recebe essa requisição**, processa e **envia uma resposta**.
+- Essa resposta pode ser:
+
+  - Um texto
+  - Um JSON (dados)
+  - Uma imagem
+  - Um HTML
+  - Um erro, se algo deu errado
+
+---
+
+## 📬 Métodos HTTP (os "tipos de pedidos")
+
+### 1. **GET** – Pedir informações
+
+- Como: “Ei servidor, me envie os dados!”
+- Exemplo: buscar lista de usuários
+
+```ts
+app.get('/usuarios', (req, res) => {
+  res.send(['João', 'Maria']);
+});
+```
+
+### 2. **POST** – Enviar dados
+
+- Como: “Servidor, aqui estão os dados para você salvar.”
+- Exemplo: enviar nome, email e senha para cadastrar um usuário
+
+```ts
+app.post('/usuarios', (req, res) => {
+  const novoUsuario = req.body;
+  // salvar no banco...
+  res.send('Usuário criado!');
+});
+```
+
+### 3. **PUT** – Atualizar dados existentes
+
+- Como: “Atualize esse dado com as novas informações.”
+- Exemplo: editar os dados do usuário com ID 1
+
+### 4. **DELETE** – Apagar dados
+
+- Como: “Remova esse dado.”
+- Exemplo: deletar o usuário com ID 5
+
+---
+
+## 💡 Resumo visual
+
+| Método | Para que serve  | Exemplo prático        |
+| ------ | --------------- | ---------------------- |
+| GET    | Buscar dados    | Ver lista de produtos  |
+| POST   | Enviar dados    | Cadastrar novo usuário |
+| PUT    | Atualizar dados | Editar uma tarefa      |
+| DELETE | Remover dados   | Apagar um comentário   |
+
+---
+
+Se quiser, posso te mostrar um exemplo com todos esses métodos no Express para praticar!
+
 # 📘 Mini Tutorial – Comandos Básicos do Git
 
 ## 1️⃣ Clonar um repositório remoto
