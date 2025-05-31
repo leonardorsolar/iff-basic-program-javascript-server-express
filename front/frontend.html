@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de Usuário</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .usuario {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 16px;
+      border-radius: 8px;
+      max-width: 400px;
+      margin-top: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .usuario p {
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Usuário</h1>
+  <div id="usuario" class="usuario">
+    <p>Carregando dados do usuário...</p>
+  </div>
+
+  <script>
+    // Função para buscar o usuário da API
+    fetch('http://localhost:3000/usuario')
+      .then(resposta => resposta.json())
+      .then(dados => {
+        const div = document.getElementById('usuario');
+        div.innerHTML = `
+          <p><strong>Nome:</strong> ${dados.nome}</p>
+          <p><strong>Email:</strong> ${dados.email}</p>
+          <p><strong>Senha:</strong> ${dados.senha}</p>
+        `;
+      })
+      .catch(erro => {
+        document.getElementById('usuario').innerHTML = '<p>Erro ao carregar usuário.</p>';
+        console.error(erro);
+      });
+  </script>
+</body>
+</html>

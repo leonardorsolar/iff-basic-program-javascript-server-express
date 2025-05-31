@@ -95,6 +95,18 @@ Você verá um objeto JSON com as informações simuladas do usuário:
 }
 ```
 
+### 🌐 7. Ver a aplicação no frontend com os dados do usuário
+
+Acesse a pasta front/frontend.html
+
+dẽ um duplo clique no arquivo frontend.html
+
+obs.: Certifique-se de que o backend está rodando com:npm run start
+
+Você verá o nome, e-mail e senha do usuário renderizados.
+
+dica: use um servidor local como Live Server no VSCode
+
 ---
 
 ## 🧠 Entendendo o código

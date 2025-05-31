@@ -5,6 +5,10 @@ import { Usuario } from './modelos/Usuario';
 // Cria uma instância do aplicativo Express
 const app = express();
 
+// Configura e aplica o middleware CORS na aplicação
+// Isso permite que o backend aceite requisições vindas de outros domínios (como um frontend separado)
+app.use(cors());
+
 // Define uma rota GET na raiz do servidor
 app.get('/', (req: Request, res: Response) => {
   res.send('Olá, Mundo! Bem-vindo ao Express com TypeScript.');
